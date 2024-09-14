@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"name": "IngenieriaWeb2-Front",
+			"path": "../../../IngenieriaWeb2-Front"
+		},
+		{
+			"name": "IngenieriaWeb2-Front-1",
+			"path": "../../../../../IngenieriaWeb2-Front-1"
+		}
+	],
+	"settings": {}
+}
