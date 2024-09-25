@@ -24,6 +24,8 @@ const putMedia = (data) => {
         }
     })
 }
-export{
+
+
+export {
     getMedia, postMedia, putMedia
 }
