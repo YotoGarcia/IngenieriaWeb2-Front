@@ -10,15 +10,15 @@ const getMedia = () => {
 }
 
 const postMedia = (data) => {
-    return axiosInstance.post('media', {
+    return axiosInstance.post('media', data,{
         Header: {
             'Content-Type': 'aplication/json'
         }
     })
 }
 
-const putMedia = (data) => {
-    return axiosInstance.put('media', {
+const putMedia = (media, data) => {
+    return axiosInstance.put('media/${mediaId}', data, {
         Header: {
             'Content-Type': 'aplication/json'
         }
