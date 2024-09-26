@@ -9,10 +9,10 @@ import Swal from 'sweetalert2';
 
 export const MediaNew = ({ handleOpenModal, listarMedia }) => {
 
-    const [directores, setDirector ] = useState([]);
-    const [generos, setGenero ] = useState([]);
-    const [tipos, setTipo ] = useState([]);
-    const [productoras, setProductora ] = useState([]);
+    const [Director, setDirector ] = useState([]);
+    const [Genero, setGenero ] = useState([]);
+    const [Tipo, setTipo ] = useState([]);
+    const [Productora, setProductora ] = useState([]);
     const [ valoresForm, setValoresForm ] = useState([]);
     const { serial = '', titulo = '', sinopsis = '', url = '',
         imagen = '', fechaCreacion = '', añoEstreno = '', genero, director, productora, tipo } = valoresForm
@@ -226,7 +226,7 @@ export const MediaNew = ({ handleOpenModal, listarMedia }) => {
                                 onChange={e => handleOnChange(e)}>
                                 <option value="">--SELECCIONE--</option>
                                     {
-                                        genero.map(({ _id, nombre }) => {
+                                        Genero.map(({ _id, nombre }) => {
                                             return <option key={_id} value={_id}>{nombre}</option>
                                         }) 
                                     }
@@ -246,7 +246,7 @@ export const MediaNew = ({ handleOpenModal, listarMedia }) => {
                                 onChange={e => handleOnChange(e)}>
                                 <option value="">--SELECCIONE--</option>
                                     {
-                                        director.map(({ _id, nombre }) => {
+                                        Director.map(({ _id, nombre }) => {
                                             return <option key={_id} value={_id}>{nombre}</option>
                                         }) 
                                     }
@@ -263,7 +263,7 @@ export const MediaNew = ({ handleOpenModal, listarMedia }) => {
                                 onChange={e => handleOnChange(e)}>
                                 <option value="">--SELECCIONE--</option>
                                     {
-                                        productora.map(({ _id, nombre }) => {
+                                        Productora.map(({ _id, nombre }) => {
                                             return <option key={_id} value={_id}>{nombre}</option>
                                         }) 
                                     }
@@ -280,7 +280,7 @@ export const MediaNew = ({ handleOpenModal, listarMedia }) => {
                                 onChange={e => handleOnChange(e)}>
                                 <option value="">--SELECCIONE--</option>
                                     {
-                                        tipo.map(({ _id, nombre }) => {
+                                        Tipo.map(({ _id, nombre }) => {
                                             return <option key={_id} value={_id}>{nombre}</option>
                                         }) 
                                     }

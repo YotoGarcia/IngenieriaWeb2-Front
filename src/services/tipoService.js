@@ -2,24 +2,24 @@ import { axiosInstance } from "../helper/axios-config";
 
 const getTipo = () => {
     return axiosInstance.get('tipo', {
-        Header: {
-            'Content-Type': 'aplication/json'
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }
 
 const postTipo = (data) => {
     return axiosInstance.post('tipo', data,{
-        Header: {
-            'Content-Type': 'aplication/json'
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }
 
-const putTipo = (tipo, data) => {
-    return axiosInstance.put('tipo/${tipoId}', data, {
-        Header: {
-            'Content-Type': 'aplication/json'
+const putTipo = ( data, tipoId) => {
+    return axiosInstance.put(`tipo/${tipoId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }

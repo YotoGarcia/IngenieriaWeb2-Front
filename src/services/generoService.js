@@ -2,24 +2,24 @@ import { axiosInstance } from "../helper/axios-config";
 
 const getGenero = () => {
     return axiosInstance.get('genero', {
-        Header: {
-            'Content-Type': 'aplication/json'
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }
 
 const postGenero = (data) => {
     return axiosInstance.post('genero', data, {
-        Header: {
-            'Content-Type': 'aplication/json'
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }
 
 const putGenero = (data, generoId) => {
-    return axiosInstance.put('genero/${genero}', data, {
-        Header: {
-            'Content-Type': 'aplication/json'
+    return axiosInstance.put(`genero/${generoId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
         }
     })
 }
