@@ -16,7 +16,7 @@ const postTipo = (data) => {
     })
 }
 
-const putTipo = ( data, tipoId) => {
+const putTipo = (tipoId, data) => {
     return axiosInstance.put(`tipo/${tipoId}`, data, {
         headers: {
             'Content-Type': 'application/json'

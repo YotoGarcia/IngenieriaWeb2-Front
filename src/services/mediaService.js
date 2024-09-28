@@ -25,7 +25,15 @@ const putMedia = (mediaId, data) => {
     })
 }
 
+const getMediaPorId = (mediaId) => {
+    return axiosInstance.get(`media/${mediaId}`,{
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 
 export {
-    getMedia, postMedia, putMedia
+    getMedia, postMedia, putMedia, getMediaPorId
 }

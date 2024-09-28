@@ -16,7 +16,7 @@ const postProductora = (data) => {
     })
 }
 
-const putProductora = (data, productoraId) => {
+const putProductora = (productoraId, data ) => {
     return axiosInstance.put(`productora/${productoraId}`, data, {
         headers: {
             'Content-Type': 'application/json'

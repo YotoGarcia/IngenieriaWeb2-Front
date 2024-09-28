@@ -41,7 +41,7 @@ export const MediaView = () => {
           handleOpenModal={handleOpenModal}
           listarMedia={listarMedia} /> :
           <button type="button" className="btn btn-primary agr" onClick={handleOpenModal}>
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus fa-lg"></i>
           </button>
               
             }

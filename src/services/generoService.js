@@ -16,7 +16,7 @@ const postGenero = (data) => {
     })
 }
 
-const putGenero = (data, generoId) => {
+const putGenero = (generoId, data ) => {
     return axiosInstance.put(`genero/${generoId}`, data, {
         headers: {
             'Content-Type': 'application/json'
