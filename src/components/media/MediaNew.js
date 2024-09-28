@@ -13,7 +13,7 @@ export const MediaNew = ({ handleOpenModal, listarMedia }) => {
     const [Genero, setGenero ] = useState([]);
     const [Tipo, setTipo ] = useState([]);
     const [Productora, setProductora ] = useState([]);
-    const [ valoresForm, setValoresForm ] = useState([]);
+    const [ valoresForm, setValoresForm ] = useState({});
     const { serial = '', titulo = '', sinopsis = '', url = '',
         imagen = '', fechaCreacion = '', añoEstreno = '', genero, director, productora, tipo } = valoresForm
     

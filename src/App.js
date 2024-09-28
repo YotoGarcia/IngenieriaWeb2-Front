@@ -4,7 +4,7 @@ import { Header } from './components/ui/Header'
 import { DirectorView } from './components/director/DirectorView';
 import { GeneroView } from './components/genero/GeneroView';
 import { MediaView } from './components/media/MediaView';
-import { ProdcutoraView } from './components/productora/ProdcutoraView';
+import { ProductoraView } from './components/productora/ProductoraView';
 import { TipoView } from './components/tipo/TipoView';
 import { MediaUpdate } from './components/media/MediaUpdate';
 
@@ -16,9 +16,9 @@ const App = () => {
       <Route exact path='/' component = {MediaView}></Route>
       <Route exact path='/director' component = {DirectorView}></Route>
       <Route exact path='/genero' component = {GeneroView}></Route>
-      <Route exact path='/productora' component = {ProdcutoraView}></Route>
+      <Route exact path='/productora' component = {ProductoraView}></Route>
       <Route exact path='/tipo' component = {TipoView}></Route>
-      <Route exact path='/media/edit/:mediaId' component={MediaUpdate} ></Route>
+      <Route exact path='/media/edit/:id' component={MediaUpdate} ></Route>
       <Redirect to='/'/>
     </Switch>
   </Router> 

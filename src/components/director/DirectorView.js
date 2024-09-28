@@ -6,13 +6,13 @@ const moment = require('moment');
 export const DirectorView = () => {
   const [valoresForm, setValoresForm] = useState({});
   const [directorList, setDirector] = useState([]); 
-  const { nombre = '', director = '' } = valoresForm;
+  const { nombre = '', estado = '' } = valoresForm;
 
   const listarDirectores = async () => {
     try {
       Swal.fire({
         allowOutsideClick: false,
-        text: 'Cargando...'
+        text: 'Cargando...',
       });
       Swal.showLoading();
       const resp = await getDirector();
@@ -37,34 +37,59 @@ export const DirectorView = () => {
     try {
       Swal.fire({
         allowOutsideClick: false,
-        text: 'Cargando...'
+        text: 'Cargando...',
       });
       Swal.showLoading();
-      await postDirector(valoresForm); 
-      setValoresForm({ nombre: '', director: '' });
+      await postDirector(valoresForm);
+      setValoresForm({ nombre: '', estado: '' });
       Swal.close();
       listarDirectores(); 
+
+      // Alerta de éxito
+      Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: 'Director creado correctamente',
+        confirmButtonText: 'Aceptar',
+        allowOutsideClick: false, // Evita que se cierre al hacer clic afuera
+        didClose: () => {
+          // Esta función se llama cuando la alerta se cierra
+          console.log("Alerta cerrada");
+        }
+      });
     } catch (error) {
       console.log(error);
       Swal.close();
+      // Alerta de error
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error al crear el director',
+        confirmButtonText: 'Aceptar',
+        allowOutsideClick: false, // Evita que se cierre al hacer clic afuera
+        didClose: () => {
+          // Esta función se llama cuando la alerta se cierra
+          console.log("Alerta cerrada");
+        }
+      });
     }
   };
 
   return (
     <div className='container-fluid'>
-      <form onSubmit={(e) => handleCrearDirector(e)}>
+      <form onSubmit={handleCrearDirector}>
         <div className="row">
           <div className="col-lg-8">
             <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input required name='nombre' value={nombre} type="text" className="form-control"
-                onChange={(e) => handleOnChange(e)} />
+                onChange={handleOnChange} />
             </div>
           </div>
           <div className="col-lg-4">
             <div className="mb-3">
               <label className="form-label">Estado</label>
-              <select required name='director' value={director} className="form-select" onChange={(e) => handleOnChange(e)} >
+              <select required name='estado' value={estado} className="form-select" onChange={handleOnChange}>
                 <option value="">--SELECCIONE--</option>
                 <option value="Activo">Activo</option>
                 <option value="Inactivo">Inactivo</option>
@@ -98,7 +123,6 @@ export const DirectorView = () => {
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );
