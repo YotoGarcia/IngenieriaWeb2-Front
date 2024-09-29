@@ -141,7 +141,7 @@ export const MediaUpdate = () => {
       Swal.showLoading();
       const { data } = await putMedia(id, media); 
       Swal.close();
-      Swal.fire('Éxito', 'Media actualizado correctamente', 'success');
+      Swal.fire('Éxito', 'Media actualizado correctamente',);
     } catch (error) {
       console.log(error);
       Swal.close();
