@@ -6,7 +6,7 @@ const moment = require('moment');
 export const TipoView = () => {
   const [valoresForm, setValoresForm] = useState({});
   const [tipoList, setTipo] = useState([]);
-  const { nombre = '', estado = '' } = valoresForm;
+  const { nombre = '', descripcion = '' } = valoresForm;
 
   const listarTipo = async () => {
     try {
@@ -41,7 +41,7 @@ export const TipoView = () => {
       });
       Swal.showLoading();
       await postTipo(valoresForm);
-      setValoresForm({ nombre: '', estado: '' });
+      setValoresForm({ nombre: '', descripcion: '' });
       Swal.close();
       listarTipo();
 
@@ -59,7 +59,7 @@ export const TipoView = () => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ocurrió un error al crear el Género',
+        text: 'Ocurrió un error al crear el Tipo',
         confirmButtonText: 'Aceptar',
         allowOutsideClick: false,
       });
@@ -69,7 +69,7 @@ export const TipoView = () => {
   const handleEliminarTipo = async (id) => {
     const confirmar = await Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Una vez eliminado, no podrás recuperar este Género.',
+      text: 'Una vez eliminado, no podrás recuperar tipo.',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -116,18 +116,18 @@ export const TipoView = () => {
           </div>
           <div className="col-lg-4">
             <div className="mb-3">
-              <label className="form-label">Estado</label>
-              <select
-                required
-                name='estado'
-                value={estado}
-                className="form-select"
-                onChange={handleOnChange}
-              >
-                <option value="">--SELECCIONE--</option>
-                <option value="Activo">Activo</option>
-                <option value="Inactivo">Inactivo</option>
-              </select>
+              <div className="mb-3">
+                <label className="form-label">Descripción</label>
+                <textarea
+                  required
+                  name="descripcion"
+                  value={descripcion}
+                  className="form-control"
+                  rows="1"
+                  onChange={handleOnChange}
+                />
+              </div>
+
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@ export const TipoView = () => {
           <tr>
             <th scope='row'>#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Estado</th>
+            <th scope="col">descripcion</th>
             <th scope='col'>Fecha Creación</th>
             <th scope='col'>Fecha Actualización</th>
             <th scope='col'>Acciones</th>
@@ -152,7 +152,7 @@ export const TipoView = () => {
             <tr key={tipo._id}>
               <th scope='row'>{index + 1}</th>
               <td>{tipo.nombre}</td>
-              <td>{tipo.estado}</td>
+              <td>{tipo.descripcion}</td>
               <td>{moment(tipo.fechaCreacion).format('DD-MM-YYYY HH:mm')}</td>
               <td>{moment(tipo.fechaActualizacion).format('DD-MM-YYYY HH:mm')}</td>
               <td>
