@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getDirector, postDirector } from '../../services/directorService';
+import { getDirector, postDirector,deleteDirector } from '../../services/directorService';
 import Swal from 'sweetalert2';
 const moment = require('moment');
 
 export const DirectorView = () => {
   const [valoresForm, setValoresForm] = useState({});
-  const [directorList, setDirector] = useState([]); 
+  const [directorList, setDirector] = useState([]);
   const { nombre = '', estado = '' } = valoresForm;
 
   const listarDirectores = async () => {
@@ -43,35 +43,57 @@ export const DirectorView = () => {
       await postDirector(valoresForm);
       setValoresForm({ nombre: '', estado: '' });
       Swal.close();
-      listarDirectores(); 
+      listarDirectores();
 
-      // Alerta de éxito
       Swal.fire({
         icon: 'success',
         title: '¡Éxito!',
         text: 'Director creado correctamente',
         confirmButtonText: 'Aceptar',
-        allowOutsideClick: false, // Evita que se cierre al hacer clic afuera
-        didClose: () => {
-          // Esta función se llama cuando la alerta se cierra
-          console.log("Alerta cerrada");
-        }
+        allowOutsideClick: false,
       });
     } catch (error) {
       console.log(error);
       Swal.close();
-      // Alerta de error
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Ocurrió un error al crear el director',
         confirmButtonText: 'Aceptar',
-        allowOutsideClick: false, // Evita que se cierre al hacer clic afuera
-        didClose: () => {
-          // Esta función se llama cuando la alerta se cierra
-          console.log("Alerta cerrada");
-        }
+        allowOutsideClick: false,
       });
+    }
+  };
+
+  const handleEliminarDirector = async (id) => {
+    const confirmar = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Una vez eliminado, no podrás recuperar este director.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminarlo!',
+      cancelButtonText: 'Cancelar',
+    });
+
+    if (confirmar.isConfirmed) {
+      try {
+        Swal.fire({
+          allowOutsideClick: false,
+          text: 'Eliminando...',
+        });
+        Swal.showLoading();
+        await deleteDirector(id);
+        listarDirectores();
+        Swal.close();
+        Swal.fire('¡Eliminado!', 'El director ha sido eliminado.', 'success');
+      } catch (error) {
+        console.log(error);
+        Swal.close();
+        Swal.fire('Oops...', 'Ocurrió un error al eliminar el director.', 'error');
+      }
     }
   };
 
@@ -82,14 +104,26 @@ export const DirectorView = () => {
           <div className="col-lg-8">
             <div className="mb-3">
               <label className="form-label">Nombre</label>
-              <input required name='nombre' value={nombre} type="text" className="form-control"
-                onChange={handleOnChange} />
+              <input
+                required
+                name='nombre'
+                value={nombre}
+                type="text"
+                className="form-control"
+                onChange={handleOnChange}
+              />
             </div>
           </div>
           <div className="col-lg-4">
             <div className="mb-3">
               <label className="form-label">Estado</label>
-              <select required name='estado' value={estado} className="form-select" onChange={handleOnChange}>
+              <select
+                required
+                name='estado'
+                value={estado}
+                className="form-select"
+                onChange={handleOnChange}
+              >
                 <option value="">--SELECCIONE--</option>
                 <option value="Activo">Activo</option>
                 <option value="Inactivo">Inactivo</option>
@@ -110,6 +144,7 @@ export const DirectorView = () => {
             <th scope="col">Estado</th>
             <th scope='col'>Fecha Creación</th>
             <th scope='col'>Fecha Actualización</th>
+            <th scope='col'>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -120,10 +155,18 @@ export const DirectorView = () => {
               <td>{director.estado}</td>
               <td>{moment(director.fechaCreacion).format('DD-MM-YYYY HH:mm')}</td>
               <td>{moment(director.fechaActualizacion).format('DD-MM-YYYY HH:mm')}</td>
+              <td>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => handleEliminarDirector(director._id)}
+                >
+                  Eliminar
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-};
+}

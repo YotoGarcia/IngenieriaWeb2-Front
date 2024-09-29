@@ -24,7 +24,15 @@ const putDirector = (directorId, data ) => {
     })
 }
 
+const deleteDirector = (directorId, data ) => {
+    return axiosInstance.delete(`director/${directorId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 
 export {
-    getDirector, postDirector, putDirector
+    getDirector, postDirector, putDirector, deleteDirector
 }

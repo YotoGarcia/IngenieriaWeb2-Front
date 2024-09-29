@@ -10,6 +10,7 @@ body {
 
 .card:hover {
     box-shadow: 0 4px 8px 0 black;
+
 }
 
 .agr {
@@ -42,4 +43,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.link:hover {
+    background-color: #0056b3;
 }

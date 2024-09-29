@@ -24,7 +24,16 @@ const putProductora = (productoraId, data ) => {
     })
 }
 
+const deleteProductora = (productoraId, data ) => {
+    return axiosInstance.delete(`productora/${productoraId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
+
 
 export {
-    getProductora, postProductora, putProductora
+    getProductora, postProductora, putProductora, deleteProductora
 }

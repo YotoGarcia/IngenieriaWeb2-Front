@@ -24,7 +24,15 @@ const putGenero = (generoId, data ) => {
     })
 }
 
+const deleteGenero = (generoId, data ) => {
+    return axiosInstance.delete(`genero/${generoId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 
 export {
-    getGenero, postGenero, putGenero
+    getGenero, postGenero, putGenero, deleteGenero
 }

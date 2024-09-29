@@ -24,7 +24,15 @@ const putTipo = (tipoId, data) => {
     })
 }
 
+const deleteTipo = (tipoId, data ) => {
+    return axiosInstance.delete(`tipo/${tipoId}`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 
 export {
-    getTipo, postTipo, putTipo
+    getTipo, postTipo, putTipo, deleteTipo
 }
